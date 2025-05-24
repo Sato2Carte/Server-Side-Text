@@ -3067,5 +3067,6 @@
   "「まあ……。こんなところで\n　お会いするなんて……。\n　これも　運命なのでしょうね。\n<bw_break>": "I see...for us to meet in a place such\nas this...\nIt too must be fate.\n<bw_break>",
   "「他のパーティを　誘って　行くこともできるぞ。\n　どうする？\n<select>\n自動で選んで行く\n４人パーティを誘って２０人で行く\n他のパーティを誘って２０人未満で行く\n<select_end>\n<case 1>\n<close>\n<case 2>\n<close>\n<case 3>\n<close>\n<case_cancel>\n<close>\n<case_end>": "You can invite other parties or be matched\nautomatically. What do you want to do?\n<select>\nAutomatically find a party.\nGo as party of 4 with 20 other players.\nGo with other parties with less than 20 players.\n<select_end>\n<case 1>\n<close>\n<case 2>\n<close>\n<case 3>\n<close>\n<case_cancel>\n<close>\n<case_end>",
   "<speed=0>パーティの人数が　4人に満たないため\n同盟相手を　指定することができません。": "<speed=0>Your party does not have 4 members,\nso you cannot choose another party to\nform an alliance with.",
-  "途中まで進めている　おはなしがあります。\n『これまでのおはなし』を　振り返りますか？<yesno><close>": "You currently have a main story in progress.\nView \"The Story So Far\" for a refresher?<yesno><close>"
+  "途中まで進めている　おはなしがあります。\n『これまでのおはなし』を　振り返りますか？<yesno><close>": "You currently have a main story in progress.\nView \"The Story So Far\" for a refresher?<yesno><close>",
+  "「やっと　船の修理が終わったよ。\n　ものすごい技術を持つ技師が　こだわりの修理を\n　見せてくれたんだ。もう　船は心配ないぜ！": "Enfin, le navire est repare.\nUn ingenieur hors pair s’est occupe de tout\navec soin. Plus aucun souci a se faire!"
 }
