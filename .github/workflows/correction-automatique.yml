@@ -1,4 +1,4 @@
-name: Correction automatique de JSON
+name: Correction automatique JSON
 
 on:
   push:
@@ -19,10 +19,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Installer les dépendances (si besoin)
-        run: |
-          pip install --upgrade pip
-
       - name: Lancer le script de correction
         run: |
           python corriger_json.py
+
+      - name: Commit et push des fichiers modifiés
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "🔧 Correction automatique des fichiers JSON"
+          git push
