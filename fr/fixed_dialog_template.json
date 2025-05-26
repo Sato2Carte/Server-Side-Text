@@ -1,6 +1,6 @@
 {
   "説明を聞きたい場合は　その質問を。\nすぐに　戦いたい場合は\n旅の扉に入るを　選んでください。\n<select>\n旅の扉に入る\n変身するモンスターの種類は？\n変身するモンスターの能力は？\nやめる\n<select_end>\n<case 1>\n<break>\n<case 2>\n<break>\n<case 3>\n<break>\n<case 4>\n<break>\n<case_cancel>\n<break>\n<case_end>": "If you'd like to battle again, enter the\nteleportal. Otherwise, you can view some\nexplanations.\n<select>\nEnter Teleportal\nAbout Monster Types\nAbout Monster Abilities\nQuit\n<select_end>\n<case 1>\n<break>\n<case 2>\n<break>\n<case 3>\n<break>\n<case 4>\n<break>\n<case_cancel>\n<break>\n<case_end>",
-  "仲間が　そろいました。<wait=1000><close>": "L'equipe est au complet.<wait=1000><close>",
+  "仲間が　そろいました。<wait=1000><close>": "L'équipe est au complet.<wait=1000><close>",
   "仲間が　そろいました！": "L'equipe est au complet!",
   "仲間が全員　そろっていませんが\nこのまま　先に進みますか？<yesno><close>": "All of your party members have not\ngathered. Proceed anyway?<yesno><close>",
   "<speed=0>パーティリーダーではないため\nこの先には　進めません。": "<speed=0>Since you are not the party leader, you\ncannot proceed further.",
