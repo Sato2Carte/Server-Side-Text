@@ -1,14 +1,42 @@
-- name: Commit & push (si fichiers modifiés)
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  run: |
-    git config --global user.name "${{ github.actor }}"
-    git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+name: Correction automatique JSON
 
-    if [ -n "$(git status --porcelain)" ]; then
-      git add .
-      git commit -m "🔧 Correction automatique des fichiers JSON"
-      git push || echo "⚠️ git push a échoué, mais le job continue."
-    else
-      echo "✅ Aucun changement détecté. Pas de push nécessaire."
-    fi
+on:
+  push:
+    paths:
+      - '*.json'
+      - 'fr/*.json'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  corriger-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cloner le dépôt
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Lancer le script de correction
+        run: python corriger_json.py
+
+      - name: Commit et push (si fichiers modifiés)
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "🔧 Correction automatique des fichiers JSON"
+            git push || echo "⚠️ git push a échoué, mais on continue."
+          else
+            echo "✅ Aucun changement à pousser."
+          fi
