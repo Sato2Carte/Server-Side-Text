@@ -1,0 +1,28 @@
+name: Correction automatique de JSON
+
+on:
+  push:
+    paths:
+      - '*.json'
+      - 'fr/*.json'
+
+jobs:
+  corriger-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cloner le dépôt
+        uses: actions/checkout@v3
+
+      - name: Configurer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Installer les dépendances (si besoin)
+        run: |
+          pip install --upgrade pip
+
+      - name: Lancer le script de correction
+        run: |
+          python corriger_json.py
