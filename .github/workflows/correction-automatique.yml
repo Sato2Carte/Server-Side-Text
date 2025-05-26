@@ -1,46 +1,21 @@
-name: Correction automatique JSON
-
-# ⬇️ 1) On demande explicitement l’accès en écriture au dépôt
-permissions:
-  contents: write      # push, commit…
-  pull-requests: write # (optionnel si tu décides de faire un PR plus tard)
-
-on:
-  push:
-    paths:
-      - '*.json'
-      - 'fr/*.json'
-
-jobs:
-  corriger-json:
-    runs-on: ubuntu-latest
-
-    steps:
-      # Clone avec les credentials pour pouvoir re-pousser
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0          # indispensable pour pousser sur la branche courante
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Lancer le script de correction
-        run: python corriger_json.py
-
       - name: Commit & push (si fichiers modifiés)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # token auto-généré par GitHub
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Config auteur
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-          # On ne commit/push que s’il y a des changements
           if [ -n "$(git status --porcelain)" ]; then
             git add .
             git commit -m "🔧 Correction automatique des fichiers JSON"
-            # Push sur la même branche que le déclencheur
+
+            # ✅ Reconfigurer remote avec token pour autoriser le pull
+            git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+
+            # 🩹 Tirer les derniers commits et rebaser dessus
+            git pull --rebase origin "${{ github.ref_name }}"
+
+            # 🟢 Pusher
             git push
           else
             echo "Pas de modifications détectées"
