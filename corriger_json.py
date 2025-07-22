@@ -45,6 +45,8 @@ def corriger_contenu(obj, modifie_flag):
 # Balaye tous les fichiers .json récursivement
 for racine_dossier, _, fichiers in os.walk(racine):
     for nom_fichier in fichiers:
+        if nom_fichier == "name_overrides.json":
+            continue  # Ignore ce fichier
         if nom_fichier.endswith(".json"):
             chemin_fichier = os.path.join(racine_dossier, nom_fichier)
             try:
