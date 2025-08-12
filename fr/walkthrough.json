@@ -1,7 +1,7 @@
 {
   "メインコマンド『せんれき』の\r\nこれまでのおはなしを見ながら\r\n物語を進めていこう。": "Use \"Records\" and check\r\n\"The Story So Far\" to see\r\nwhere to head next.",
   "新たなる冒険にそなえ\r\n町の酒場にいる\r\n紹介人に話しかけよう。": "Prepare for new adventures.\r\nTalk to an Introducer at the\r\ntavern in any town.",
-  "エテーネの村のアバの家にいる\nアバさまに　謝りにいこう。": "Va t'excuser aupres d'Abba,\ndans sa demeure du village\nde Cadis.",
+  "エテーネの村のアバの家にいる\nアバさまに　謝りにいこう。": "Va t'excuser aupres d’Abba,\ndans sa demeure du village\nde Cadis.",
   "久遠の森にいる　イココと話し\n世界樹の頂へ行こう。": "Talk to Ikoko in Eternal Wood\nand go to the top of Yggdrasil.",
   "久遠の森にいる　イココと話し\n世界樹の頂にいる\n紫獅鬼バイロゼオを倒そう。": "Talk with Ikoko in Eternal Wood\nand defeat Purple Lion Byrozeo\nat the World Tree Top.",
   "ツスクルの村の巫女の館にいる\n巫女ヒメアの話を聞こう。": "Let's listen to Maiden Himea in\nthe Maiden Manor in Tsusukul\nVillage.",
@@ -196,5 +196,6 @@
   "新たなる冒険にそなえ\n町の酒場にいる\n紹介人に話しかけよう。": "Prepare for new adventures.\nTalk to an Introducer at the\ntavern in any town.",
   "エテーネの村の水車小屋で\nフカフカのもみガラと\n干しどくけし草を手に入れよう。": "Procure-toi des balles de riz\nmoelleuses et des herbes\ncuratives sechees.",
   "アバの家にいるシンイに\nフカフカのもみガラと\n干しどくけし草を届けよう。": "Va remettre les balles de riz\nmoelleuses et les herbes\ncuratives sechees a Shini.",
-  "アバの部屋に行ってみよう。": "Va dans la chambre d'Abba."
+  "アバの部屋に行ってみよう。": "Va dans la chambre d'Abba.",
+  "エテーネの村を北に出て\n育みの大地の　いしずえの森を\n探してみよう。": "Quittez Cadis vers le nord et\ncherchez Foret angulaire dans\nFlourish Fields."
 }
