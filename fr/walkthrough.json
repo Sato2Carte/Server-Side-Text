@@ -1,7 +1,7 @@
 {
   "メインコマンド『せんれき』の\r\nこれまでのおはなしを見ながら\r\n物語を進めていこう。": "Use \"Records\" and check\r\n\"The Story So Far\" to see\r\nwhere to head next.",
   "新たなる冒険にそなえ\r\n町の酒場にいる\r\n紹介人に話しかけよう。": "Prepare for new adventures.\r\nTalk to an Introducer at the\r\ntavern in any town.",
-  "エテーネの村のアバの家にいる\nアバさまに　謝りにいこう。": "Va t'excuser aupres d'Abba,\ndans sa demeure du village\nde Cadis.",
+  "エテーネの村のアバの家にいる\nアバさまに　謝りにいこう。": "Va t'excuser aupres d’Abba,\ndans sa demeure du village\nde Cadis.",
   "久遠の森にいる　イココと話し\n世界樹の頂へ行こう。": "Talk to Ikoko in Eternal Wood\nand go to the top of Yggdrasil.",
   "久遠の森にいる　イココと話し\n世界樹の頂にいる\n紫獅鬼バイロゼオを倒そう。": "Talk with Ikoko in Eternal Wood\nand defeat Purple Lion Byrozeo\nat the World Tree Top.",
   "ツスクルの村の巫女の館にいる\n巫女ヒメアの話を聞こう。": "Let's listen to Maiden Himea in\nthe Maiden Manor in Tsusukul\nVillage.",
@@ -207,5 +207,6 @@
   "ランガーオ村の\n武闘場へ行こう。": "Se rendre sur le champ de\nbataille du village de Langao.",
   "再び ロンダ岬へ行こう。": "Revenir au Cap de Rhonda.",
   "ロンダ岬の\n狂鬼ジーガンフを倒そう。": "Vaincre Jiganf le Fou au Cap de\nRhonda.",
-  "ランガーオ村から\nランガーオ山地を南に抜けて\nグレン城を目指そう。": "Depuis le village de Langao,\naller vers le sud a travers les\nmontagnes de Langao [...]"
+  "ランガーオ村から\nランガーオ山地を南に抜けて\nグレン城を目指そう。": "Depuis le village de Langao,\naller vers le sud a travers les\nmontagnes de Langao [...]",
+  "町にある素材屋や\n旅人バザーの取引商から\nさえずりのみつを買って戻ろう。": "Acheter le Nectar du rossignol\nau Magasin de Materiaux ou au\nBazar du voyageur en [...]"
 }
