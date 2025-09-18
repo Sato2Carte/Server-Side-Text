@@ -1,7 +1,7 @@
 {
   "メインコマンド『せんれき』の\r\nこれまでのおはなしを見ながら\r\n物語を進めていこう。": "Use \"Records\" and check\r\n\"The Story So Far\" to see\r\nwhere to head next.",
   "新たなる冒険にそなえ\r\n町の酒場にいる\r\n紹介人に話しかけよう。": "Adresse-toi a un introducteur\ndans n'importe quelle taverne.",
-  "エテーネの村のアバの家にいる\nアバさまに　謝りにいこう。": "Va t'excuser aupres d'Abba,\ndans sa demeure du village\nde Cadis.",
+  "エテーネの村のアバの家にいる\nアバさまに　謝りにいこう。": "Va t'excuser aupres d’Abba,\ndans sa demeure du village\nde Cadis.",
   "久遠の森にいる　イココと話し\n世界樹の頂へ行こう。": "Talk to Ikoko in Eternal Wood\nand go to the top of Yggdrasil.",
   "久遠の森にいる　イココと話し\n世界樹の頂にいる\n紫獅鬼バイロゼオを倒そう。": "Talk with Ikoko in Eternal Wood\nand defeat Purple Lion Byrozeo\nat the World Tree Top.",
   "ツスクルの村の巫女の館にいる\n巫女ヒメアの話を聞こう。": "Let's listen to Maiden Himea in\nthe Maiden Manor in Tsusukul\nVillage.",
@@ -214,5 +214,6 @@
   "手に入れたアストルニウムを\n宿屋にいる案内係に渡そう。": "Remets l'astolnium au concierge\nd'une auberge.",
   "グレン城の玉座の間へ行こう。": "Rends-toi a la salle du trone\ndu chateau de Glen.",
   "プクレットの村の\nピリッポの家へ行こう。": "Visite de la maison de Pirippo\ndans le village de Pukulet.",
-  "プクレットの村の\nプックレイ村長に話しかけよう。": "Parlez au Chef Plaisley dans le\nVillage de Pukulet."
+  "プクレットの村の\nプックレイ村長に話しかけよう。": "Parlez au Chef Plaisley dans le\nVillage de Pukulet.",
+  "プクレットの村を出て\n西にあるポーポラ地方の\n賢者の隠れ家へ行こう。": "Quittez le Village de Pukulet\net allez vers l'ouest jusqu'au\nRepaire du sage dans la [...]"
 }
