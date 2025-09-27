@@ -7,6 +7,7 @@ def corriger_texte(texte):
     if isinstance(texte, str):
         return (
             texte.replace("…", "...")
+                 .replace("。", ".")
                  .replace("’", "'")
                  .replace(" !", "!")
                  .replace(" ?", "?")
