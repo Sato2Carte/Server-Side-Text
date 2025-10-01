@@ -1,108 +1,138 @@
-import os
-import json
+import os, json, re, argparse, shutil
 
-racine = "."  # Racine du dépôt Git
+def load_rules(path):
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    rules = []
+    for i, r in enumerate(data):
+        m = r.get("match", "exact")
+        old = r["old"]; new = r["new"]
+        if m not in {"exact","contains","startswith","endswith","regex"}:
+            raise ValueError(f"Règle #{i+1}: match inconnu '{m}'")
+        comp = re.compile(old) if m=="regex" else None
+        rules.append({"match": m, "old": old, "new": new, "regex": comp})
+    return rules
 
-# --- Clés à modifier spécifiquement (「。」 -> ".") ---
-KEY1_OLD = "』の\n　お手本が　どうしても見たいんです！\n<br>\n「しぐさをするのは　先生自身でもいいし\n　先生のお仲間の方が　私の目の前で　するのでも\n　かまいません。ご指導　よろしくお願いします！"
-KEY1_NEW = "』の\n　お手本が　どうしても見たいんです！\n<br>\n「しぐさをするのは　先生自身でもいいし\n　先生のお仲間の方が　私の目の前で　するのでも\n　かまいません.ご指導　よろしくお願いします！"
-
-KEY2_OLD = "』の\nお手本を見せてほしい！　と頼まれた。\nしぐさを行うのは　仲間でもいいようだ。"
-KEY2_NEW = "』の\nお手本を見せてほしい！　と頼まれた.\nしぐさを行うのは　仲間でもいいようだ."
-
-# --- Corrections générales (comme ton script initial) ---
-def corriger_texte(texte):
-    if isinstance(texte, str):
-        return (
-            texte.replace("…", "...")
-                 .replace("。", ".")
-                 .replace("’", "'")
-                 .replace(" !", "!")
-                 .replace(" ?", "?")
-                 .replace("~", "～")
-                 .replace("é", "e").replace("è", "e").replace("ê", "e").replace("ë", "e")
-                 .replace("î", "i").replace("ï", "i")
-                 .replace("ô", "o").replace("ö", "o")
-                 .replace("ù", "u").replace("û", "u")
-                 .replace("à", "a").replace("â", "a").replace("ä", "a")
-                 .replace("É", "E").replace("È", "E").replace("Ê", "E").replace("Ë", "E")
-                 .replace("Î", "I").replace("Ï", "I")
-                 .replace("Ô", "O").replace("Ö", "O")
-                 .replace("Ù", "U").replace("Û", "U").replace("Ü", "U")
-                 .replace("À", "A").replace("Â", "A").replace("Ä", "A")
-                 .replace("ç", "c").replace("Ç", "C")
-                 .replace("æ", "ae").replace("Æ", "AE")
-                 .replace("œ", "oe").replace("Œ", "OE")
-                 .replace('“', '"').replace('”', '"').replace("«", '"').replace("»", '"')
-                 .replace("‐", "-").replace("-", "-").replace("–", "-").replace("—", "-").replace("−", "-")
-        )
-    return texte
-
-def corriger_valeurs(obj, modifie_flag):
-    """Applique corriger_texte sur les VALEURS uniquement (pas les clés)."""
-    if isinstance(obj, dict):
-        return {k: corriger_valeurs(v, modifie_flag) for k, v in obj.items()}
-    elif isinstance(obj, list):
-        return [corriger_valeurs(i, modifie_flag) for i in obj]
-    elif isinstance(obj, str):
-        txt = corriger_texte(obj)
-        if txt != obj:
-            modifie_flag[0] = True
-        return txt
-    else:
-        return obj
-
-def transformer_cles(obj, modifie_flag):
-    """Ne modifie PAS les clés en général, sauf les deux clés ciblées ci-dessus."""
+def apply_key_rules(obj, rules, stats):
+    """
+    Ne modifie que les CLÉS selon les règles (récursif).
+    Gestion collision : lève en cas de collision post-transformation.
+    """
     if isinstance(obj, dict):
         new_dict = {}
         for k, v in obj.items():
             new_k = k
             if isinstance(k, str):
-                if k == KEY1_OLD:
-                    new_k = KEY1_NEW
-                elif k == KEY2_OLD:
-                    new_k = KEY2_NEW
-                if new_k != k:
-                    modifie_flag[0] = True
-            # d'abord transformer récursivement les sous-objets (pour traiter les valeurs)
-            new_v = transformer_cles(v, modifie_flag)
-            # gestion collision éventuelle
+                for r in rules:
+                    if r["match"] == "exact" and k == r["old"]:
+                        new_k = r["new"]; stats["keys_changed"] += 1
+                    elif r["match"] == "contains" and r["old"] in k:
+                        new_k = k.replace(r["old"], r["new"]); stats["keys_changed"] += 1
+                    elif r["match"] == "startswith" and k.startswith(r["old"]):
+                        new_k = r["new"] + k[len(r["old"]):]; stats["keys_changed"] += 1
+                    elif r["match"] == "endswith" and k.endswith(r["old"]):
+                        new_k = k[:len(k)-len(r["old"])] + r["new"]; stats["keys_changed"] += 1
+                    elif r["match"] == "regex" and r["regex"]:
+                        new2 = r["regex"].sub(r["new"], new_k)
+                        if new2 != new_k:
+                            new_k = new2; stats["keys_changed"] += 1
+            new_v = apply_key_rules(v, rules, stats)
             if new_k in new_dict and new_k != k:
                 raise ValueError(f"Collision de clé après transformation : {new_k}")
             new_dict[new_k] = new_v
         return new_dict
     elif isinstance(obj, list):
-        return [transformer_cles(i, modifie_flag) for i in obj]
+        return [apply_key_rules(i, rules, stats) for i in obj]
+    return obj
+
+def corriger_texte(texte, keep_accents=False):
+    if not isinstance(texte, str): return texte
+    t = (texte.replace("…", "...")
+               .replace("。", ".")
+               .replace("’", "'")
+               .replace(" !", "!")
+               .replace(" ?", "?")
+               .replace("~", "～")
+               .replace("‐", "-").replace("–", "-").replace("—", "-").replace("−", "-"))
+    if not keep_accents:
+        t = (t.replace("é","e").replace("è","e").replace("ê","e").replace("ë","e")
+               .replace("î","i").replace("ï","i")
+               .replace("ô","o").replace("ö","o")
+               .replace("ù","u").replace("û","u")
+               .replace("à","a").replace("â","a").replace("ä","a")
+               .replace("É","E").replace("È","E").replace("Ê","E").replace("Ë","E")
+               .replace("Î","I").replace("Ï","I")
+               .replace("Ô","O").replace("Ö","O")
+               .replace("Ù","U").replace("Û","U").replace("Ü","U")
+               .replace("À","A").replace("Â","A").replace("Ä","A")
+               .replace("ç","c").replace("Ç","C")
+               .replace("æ","ae").replace("Æ","AE")
+               .replace("œ","oe").replace("Œ","OE"))
+    t = (t.replace('“','"').replace('”','"').replace("«",'"').replace("»",'"'))
+    return t
+
+def corriger_valeurs(obj, stats, keep_accents=False):
+    if isinstance(obj, dict):
+        return {k: corriger_valeurs(v, stats, keep_accents) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [corriger_valeurs(i, stats, keep_accents) for i in obj]
+    if isinstance(obj, str):
+        new = corriger_texte(obj, keep_accents)
+        if new != obj: stats["values_changed"] += 1
+        return new
+    return obj
+
+def process_file(path, rules, args, global_stats):
+    try:
+        with open(path, "r", encoding="utf-8-sig") as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"Erreur lecture JSON: {path} : {e}")
+        global_stats["errors"] += 1
+        return
+
+    stats = {"keys_changed": 0, "values_changed": 0}
+    data = corriger_valeurs(data, stats, keep_accents=args.keep_accents)
+    data = apply_key_rules(data, rules, stats)
+
+    if stats["keys_changed"] or stats["values_changed"]:
+        print(f"[CHANGES] {path}  (keys:{stats['keys_changed']} values:{stats['values_changed']})")
+        global_stats["changed_files"] += 1
+        if args.apply:
+            if args.backup:
+                shutil.copy2(path, path + ".bak")
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
     else:
-        return obj
+        print(f"[OK] {path}")
+    global_stats["files"] += 1
+    global_stats["keys"] += stats["keys_changed"]
+    global_stats["values"] += stats["values_changed"]
 
-# --- Parcours des fichiers JSON ---
-for racine_dossier, _, fichiers in os.walk(racine):
-    for nom_fichier in fichiers:
-        if nom_fichier == "name_overrides.json":
-            continue  # ignore ce fichier
-        if not nom_fichier.endswith(".json"):
-            continue
-        chemin_fichier = os.path.join(racine_dossier, nom_fichier)
-        try:
-            with open(chemin_fichier, "r", encoding="utf-8") as f:
-                contenu = json.load(f)
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--root", default=".", help="Racine du dépôt")
+    ap.add_argument("--rules", default="key_rules.json", help="Fichier JSON des règles de clés")
+    ap.add_argument("--apply", action="store_true", help="Écrire les changements")
+    ap.add_argument("--backup", action="store_true", help="Créer un .bak avant d’écrire")
+    ap.add_argument("--keep-accents", action="store_true", help="Ne pas déaccentuer les valeurs")
+    args = ap.parse_args()
 
-            modifie = [False]
+    rules = load_rules(args.rules)
 
-            # 1) Corriger les VALEURS (comme le script initial, mais sans toucher aux clés)
-            contenu_corrige_val = corriger_valeurs(contenu, modifie)
+    g = {"files":0, "changed_files":0, "keys":0, "values":0, "errors":0}
+    for root, _, files in os.walk(args.root):
+        for name in files:
+            if name == "name_overrides.json": continue
+            if not name.endswith(".json"): continue
+            process_file(os.path.join(root, name), rules, args, g)
 
-            # 2) Appliquer la transformation ciblée sur les DEUX CLÉS seulement
-            contenu_final = transformer_cles(contenu_corrige_val, modifie)
+    print(f"\n--- Bilan ---")
+    print(f"Fichiers scannés : {g['files']}")
+    print(f"Fichiers modifiés : {g['changed_files']}")
+    print(f"Clés modifiées    : {g['keys']}")
+    print(f"Valeurs modifiées : {g['values']}")
+    print(f"Erreurs           : {g['errors']}")
 
-            if modifie[0]:
-                with open(chemin_fichier, "w", encoding="utf-8") as f:
-                    json.dump(contenu_final, f, ensure_ascii=False, indent=2)
-                print(f"Corrigé : {chemin_fichier}")
-            else:
-                print(f"Aucune modification : {chemin_fichier}")
-
-        except Exception as e:
-            print(f"Erreur avec {chemin_fichier} : {e}")
+if __name__ == "__main__":
+    main()
