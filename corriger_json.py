@@ -9,41 +9,26 @@ import shutil
 
 # ------------- Helpers EOL (CRLF/LF) -------------
 def _to_lf(s):
-    """Normalise \\r\\n -> \\n (pour comparaisons fiables)."""
     return s.replace("\r\n", "\n") if isinstance(s, str) else s
 
 def _restore_eol(s, template):
-    """Si la clé originale était en CRLF, ré-applique CRLF à la nouvelle clé."""
     if isinstance(template, str) and "\r\n" in template:
         return s.replace("\n", "\r\n")
     return s
 
-# ------------- Dé-hiérarchisation (aplatissement) des clés -------------
+# ------------- Dé-hiérarchisation des clés -------------
 def deflatten(obj, sep="."):
-    """
-    Transforme {"P":{"":{"":{" Professeur!":"Bobibegk"}}}}
-    en {"P... Professeur!":"Bobibegk"}.
-
-    - Joint tous les segments de chemin (même vides) avec `sep`.
-    - Détecte les collisions (deux chemins qui produisent la même clé).
-    - Traite récursivement les dicts. Laisse les listes et autres types intacts
-      (sauf si elles contiennent des dicts imbriqués, qui seront aplatis avec une clé jointe).
-    """
     def _walk(node, parts, out):
         if isinstance(node, dict):
             for k, v in node.items():
                 k_str = k if isinstance(k, str) else str(k)
                 _walk(v, parts + [k_str], out)
         elif isinstance(node, list):
-            # Si une liste contient des dicts, on les aplatit et les pose sous la clé actuelle
-            # En revanche, si la liste est "pure" (pas de dict), on l'assigne telle quelle.
             if any(isinstance(i, dict) for i in node):
-                # on place chaque dict enfant sous la même clé jointe (peut créer collision)
                 for idx, item in enumerate(node):
                     if isinstance(item, dict):
                         _walk(item, parts + [str(idx)], out)
                     else:
-                        # on capture les éléments non-dict dans une clé dédiée (indexée)
                         key = sep.join(parts + [str(idx)])
                         if key in out:
                             raise ValueError(f"Collision de clé après dé-hiérarchisation : {key}")
@@ -63,17 +48,10 @@ def deflatten(obj, sep="."):
         result = {}
         _walk(obj, [], result)
         return result
-    # Si le root est une liste, on la laisse telle quelle (cas rare pour i18n)
     return obj
 
 # ------------- Chargement des règles -------------
 def load_rules(path):
-    """
-    key_rules.json = [
-      {"match":"exact|contains|startswith|endswith|regex", "old":"...", "new":"..."},
-      ...
-    ]
-    """
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
     rules = []
@@ -129,39 +107,26 @@ def corriger_valeurs(obj, stats, keep_accents=False):
 
 # ------------- Remplacements sur les CLÉS -------------
 def apply_key_rules(obj, rules, stats):
-    """
-    Applique les règles sur les CLÉS uniquement (récursif).
-    - exact : tolérant CRLF/LF (compare en LF, restaure EOL original).
-    - contains/startswith/endswith/regex : comportement standard.
-    Lève en cas de collision post-transformation.
-    """
     if isinstance(obj, dict):
         new_dict = {}
         for k, v in obj.items():
             new_k = k
-
             if isinstance(k, str):
                 for r in rules:
                     m = r["match"]
                     if m == "exact":
-                        k_lf   = _to_lf(k)
-                        old_lf = _to_lf(r["old"])
-                        if k_lf == old_lf:
-                            new_candidate = r["new"]  # construit en LF
-                            new_k = _restore_eol(new_candidate, k)  # restaure CRLF si présent
+                        if _to_lf(k) == _to_lf(r["old"]):
+                            new_k = _restore_eol(r["new"], k)
                             stats["keys_changed"] += 1
-                    elif m == "contains":
-                        if r["old"] in new_k:
-                            new_k = new_k.replace(r["old"], r["new"])
-                            stats["keys_changed"] += 1
-                    elif m == "startswith":
-                        if new_k.startswith(r["old"]):
-                            new_k = r["new"] + new_k[len(r["old"]):]
-                            stats["keys_changed"] += 1
-                    elif m == "endswith":
-                        if new_k.endswith(r["old"]):
-                            new_k = new_k[:len(new_k)-len(r["old"])] + r["new"]
-                            stats["keys_changed"] += 1
+                    elif m == "contains" and r["old"] in new_k:
+                        new_k = new_k.replace(r["old"], r["new"])
+                        stats["keys_changed"] += 1
+                    elif m == "startswith" and new_k.startswith(r["old"]):
+                        new_k = r["new"] + new_k[len(r["old"]):]
+                        stats["keys_changed"] += 1
+                    elif m == "endswith" and new_k.endswith(r["old"]):
+                        new_k = new_k[:len(new_k)-len(r["old"])] + r["new"]
+                        stats["keys_changed"] += 1
                     elif m == "regex" and r["regex"]:
                         new2 = r["regex"].sub(r["new"], new_k)
                         if new2 != new_k:
@@ -169,7 +134,6 @@ def apply_key_rules(obj, rules, stats):
                             stats["keys_changed"] += 1
 
             new_v = apply_key_rules(v, rules, stats)
-
             if new_k in new_dict and new_k != k:
                 raise ValueError(f"Collision de clé après transformation : {new_k}")
             new_dict[new_k] = new_v
@@ -177,13 +141,11 @@ def apply_key_rules(obj, rules, stats):
 
     if isinstance(obj, list):
         return [apply_key_rules(i, rules, stats) for i in obj]
-
     return obj
 
 # ------------- Traitement d'un fichier -------------
 def process_file(path, rules, args, global_stats):
     try:
-        # utf-8-sig pour tolérer BOM
         with open(path, "r", encoding="utf-8-sig") as f:
             data = json.load(f)
     except Exception as e:
@@ -191,7 +153,6 @@ def process_file(path, rules, args, global_stats):
         global_stats["errors"] += 1
         return
 
-    # 1) Dé-hiérarchiser si demandé (avant toute autre opération)
     if args.deflatten:
         try:
             data = deflatten(data, sep=".")
@@ -201,14 +162,9 @@ def process_file(path, rules, args, global_stats):
             return
 
     stats = {"keys_changed": 0, "values_changed": 0}
-
-    # 2) Corrections de valeurs (ponctuation, accents, etc.)
     data = corriger_valeurs(data, stats, keep_accents=args.keep_accents)
-
-    # 3) Règles de renommage de clés
     data = apply_key_rules(data, rules, stats)
 
-    # 4) Écriture si changements
     if stats["keys_changed"] or stats["values_changed"]:
         print(f"[CHANGES] {path}  (keys:{stats['keys_changed']} values:{stats['values_changed']})")
         global_stats["changed_files"] += 1
@@ -241,8 +197,13 @@ def main():
     ap.add_argument("--keep-accents", action="store_true", help="Ne pas déaccentuer les valeurs.")
     ap.add_argument("--skip", nargs="*", default=["name_overrides.json"], help="Fichiers à ignorer.")
     ap.add_argument("--deflatten", action="store_true",
-                    help="Aplatir les objets imbriqués pour reconstituer les clés jointes par '.' (ex: P... Professeur!).")
+                    help="Aplatir les objets imbriqués pour reconstituer les clés jointes par '.'")
     args = ap.parse_args()
+
+    # 🔧 Auto-activation en CI GitHub
+    if os.getenv("GITHUB_ACTIONS") == "true":
+        args.deflatten = True
+        args.apply = True
 
     try:
         rules = load_rules(args.rules)
