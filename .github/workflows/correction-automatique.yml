@@ -25,18 +25,18 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Lancer le script de correction
-        run: python corriger_json.py
+      - name: Lancer le script de correction (deflatten + apply)
+        run: |
+          python corriger_json.py --root . --rules key_rules.json --deflatten --apply --backup
 
       - name: Commit et push (si fichiers modifiés)
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-
-          if [ -n "$(git status --porcelain)" ]; then
-            git add .
-            git commit -m "🔧 Correction automatique des fichiers JSON"
-            git push || echo "⚠️ git push a échoué, mais on continue."
-          else
+          git add -A
+          if git diff --cached --quiet; then
             echo "✅ Aucun changement à pousser."
+          else
+            git commit -m "fix: deflatten Crowdin JSON + corrections"
+            git push || echo "⚠️ git push a échoué, mais on continue."
           fi
