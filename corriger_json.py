@@ -18,6 +18,54 @@ def _restore_eol(s, template):
         return s.replace("\n", "\r\n")
     return s
 
+# ------------- Dé-hiérarchisation (aplatissement) des clés -------------
+def deflatten(obj, sep="."):
+    """
+    Transforme {"P":{"":{"":{" Professeur!":"Bobibegk"}}}}
+    en {"P... Professeur!":"Bobibegk"}.
+
+    - Joint tous les segments de chemin (même vides) avec `sep`.
+    - Détecte les collisions (deux chemins qui produisent la même clé).
+    - Traite récursivement les dicts. Laisse les listes et autres types intacts
+      (sauf si elles contiennent des dicts imbriqués, qui seront aplatis avec une clé jointe).
+    """
+    def _walk(node, parts, out):
+        if isinstance(node, dict):
+            for k, v in node.items():
+                k_str = k if isinstance(k, str) else str(k)
+                _walk(v, parts + [k_str], out)
+        elif isinstance(node, list):
+            # Si une liste contient des dicts, on les aplatit et les pose sous la clé actuelle
+            # En revanche, si la liste est "pure" (pas de dict), on l'assigne telle quelle.
+            if any(isinstance(i, dict) for i in node):
+                # on place chaque dict enfant sous la même clé jointe (peut créer collision)
+                for idx, item in enumerate(node):
+                    if isinstance(item, dict):
+                        _walk(item, parts + [str(idx)], out)
+                    else:
+                        # on capture les éléments non-dict dans une clé dédiée (indexée)
+                        key = sep.join(parts + [str(idx)])
+                        if key in out:
+                            raise ValueError(f"Collision de clé après dé-hiérarchisation : {key}")
+                        out[key] = item
+            else:
+                key = sep.join(parts)
+                if key in out:
+                    raise ValueError(f"Collision de clé après dé-hiérarchisation : {key}")
+                out[key] = node
+        else:
+            key = sep.join(parts)
+            if key in out:
+                raise ValueError(f"Collision de clé après dé-hiérarchisation : {key}")
+            out[key] = node
+
+    if isinstance(obj, dict):
+        result = {}
+        _walk(obj, [], result)
+        return result
+    # Si le root est une liste, on la laisse telle quelle (cas rare pour i18n)
+    return obj
+
 # ------------- Chargement des règles -------------
 def load_rules(path):
     """
@@ -99,10 +147,8 @@ def apply_key_rules(obj, rules, stats):
                         k_lf   = _to_lf(k)
                         old_lf = _to_lf(r["old"])
                         if k_lf == old_lf:
-                            # on construit d'abord la nouvelle clé en LF
-                            new_candidate = r["new"]
-                            # puis on restaure l'EOL d'origine
-                            new_k = _restore_eol(new_candidate, k)
+                            new_candidate = r["new"]  # construit en LF
+                            new_k = _restore_eol(new_candidate, k)  # restaure CRLF si présent
                             stats["keys_changed"] += 1
                     elif m == "contains":
                         if r["old"] in new_k:
@@ -145,10 +191,24 @@ def process_file(path, rules, args, global_stats):
         global_stats["errors"] += 1
         return
 
+    # 1) Dé-hiérarchiser si demandé (avant toute autre opération)
+    if args.deflatten:
+        try:
+            data = deflatten(data, sep=".")
+        except Exception as e:
+            print(f"  ! Dé-hiérarchisation échouée pour {path}: {e}")
+            global_stats["errors"] += 1
+            return
+
     stats = {"keys_changed": 0, "values_changed": 0}
+
+    # 2) Corrections de valeurs (ponctuation, accents, etc.)
     data = corriger_valeurs(data, stats, keep_accents=args.keep_accents)
+
+    # 3) Règles de renommage de clés
     data = apply_key_rules(data, rules, stats)
 
+    # 4) Écriture si changements
     if stats["keys_changed"] or stats["values_changed"]:
         print(f"[CHANGES] {path}  (keys:{stats['keys_changed']} values:{stats['values_changed']})")
         global_stats["changed_files"] += 1
@@ -180,6 +240,8 @@ def main():
     ap.add_argument("--backup", action="store_true", help="Créer un .bak avant d’écrire (avec --apply).")
     ap.add_argument("--keep-accents", action="store_true", help="Ne pas déaccentuer les valeurs.")
     ap.add_argument("--skip", nargs="*", default=["name_overrides.json"], help="Fichiers à ignorer.")
+    ap.add_argument("--deflatten", action="store_true",
+                    help="Aplatir les objets imbriqués pour reconstituer les clés jointes par '.' (ex: P... Professeur!).")
     args = ap.parse_args()
 
     try:
