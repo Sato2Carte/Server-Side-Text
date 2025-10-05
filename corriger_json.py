@@ -143,6 +143,30 @@ def apply_key_rules(obj, rules, stats):
         return [apply_key_rules(i, rules, stats) for i in obj]
     return obj
 
+# ------------- Sélection/filtrage des fichiers -------------
+def _is_rules_file(path, rules_path):
+    try:
+        return os.path.samefile(path, rules_path)
+    except Exception:
+        return os.path.abspath(path) == os.path.abspath(rules_path)
+
+def _should_skip_file(path, args):
+    name = os.path.basename(path)
+    low = name.lower()
+    # Ne traiter que les .json
+    if not low.endswith(".json"):
+        return True
+    # Fichiers explicitement ignorés
+    if name in args.skip:
+        return True
+    # Ne jamais toucher aux JSONs de règles de clés (ex: key_rule.json, key_rules.json, etc.)
+    if low.endswith(".json") and ("key_rule" in low):
+        return True
+    # Ne jamais toucher au fichier de règles passé via --rules (quelle que soit son extension)
+    if _is_rules_file(path, args.rules):
+        return True
+    return False
+
 # ------------- Traitement d'un fichier -------------
 def process_file(path, rules, args, global_stats):
     try:
@@ -191,11 +215,11 @@ def process_file(path, rules, args, global_stats):
 def main():
     ap = argparse.ArgumentParser(description="Corriger valeurs et renommer des clés JSON (CRLF/LF safe).")
     ap.add_argument("--root", default=".", help="Racine à scanner (dossier).")
-    ap.add_argument("--rules", default="key_rules.txt", help="Fichier JSON des règles de clés.")
+    ap.add_argument("--rules", default="key_rules.json", help="Fichier JSON des règles de clés.")
     ap.add_argument("--apply", action="store_true", help="Écrire les changements (sinon dry-run).")
     ap.add_argument("--backup", action="store_true", help="Créer un .bak avant d’écrire (avec --apply).")
     ap.add_argument("--keep-accents", action="store_true", help="Ne pas déaccentuer les valeurs.")
-    ap.add_argument("--skip", nargs="*", default=["name_overrides.json"], help="Fichiers à ignorer.")
+    ap.add_argument("--skip", nargs="*", default=["name_overrides.json"], help="Fichiers à ignorer (exact).")
     ap.add_argument("--deflatten", action="store_true",
                     help="Aplatir les objets imbriqués pour reconstituer les clés jointes par '.'")
     args = ap.parse_args()
@@ -214,11 +238,11 @@ def main():
     g = {"files": 0, "changed_files": 0, "keys": 0, "values": 0, "errors": 0}
     for root, _, files in os.walk(args.root):
         for name in files:
-            if not name.endswith(".json"):
+            path = os.path.join(root, name)
+            if _should_skip_file(path, args):
+                # On ignore explicitement les JSONs de règles de clés
                 continue
-            if name in args.skip:
-                continue
-            process_file(os.path.join(root, name), rules, args, g)
+            process_file(path, rules, args, g)
 
     print("\n--- Bilan ---")
     print(f"Fichiers scannés : {g['files']}")
