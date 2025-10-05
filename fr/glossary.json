@@ -38754,16 +38754,16 @@
   "の\n\n　お手本が　どうしても見たいんです！<open_irai><bw_break>": "!<open_irai><bw_break>",
   "グレン城下町にいる　女優志望のシュリナに\n演技の勉強のため　『": "Shrina, une actrice en herbe de Glen t'a demande de lui montrer l'attitude \"",
   "』の\n　お手本が　どうしても見たいんです！\n<br>\n「しぐさをするのは　先生自身でもいいし\n　先生のお仲間の方が　私の目の前で　するのでも\n　かまいません。ご指導　よろしくお願いします！": "\"!\n<br>\nVous pouvez soit utiliser l'attitude\nvous-meme, ou alors demander a l'un des\nmembres de votre equipe.",
-  "』の\nお手本を見せてほしい！　と頼まれた。\nしぐさを行うのは　仲間でもいいようだ。": "\" afin qu'elle puisse ameliorer son jeu scenique! L'attitude peut egalement etre realisee par l'un de tes compagnons.",
+  "』の\nお手本を見せてほしい！　と頼まれた.\nしぐさを行うのは　仲間でもいいようだ.": "\" afin qu'elle puisse ameliorer son jeu scenique! L'attitude peut egalement etre realisee par l'un de tes compagnons.",
   "<icon_exc>「せ　先生！\n<br>\n「はっ！　す　すいません！　突然に！\n<br>\n「私　女優を目指してる　シュリナっていいます。\n　でも　こんな無骨な町では　演技の勉強するのに\n　いい先生がいなくて　困っていたんです。\n<br>\n「でも　先生から洗練されたセンスを感じました。\n　お願いです！　どうか　私の先生になって\n　演技のレッスンをしてください。\n<br>\n「レッスンといっても　私の苦手な　しぐさを\n　目の前で　やってくれるだけでいいんです。\n　それだけで　充分　勉強になりますから！\n<br>\n「最初は　しぐさ『": "<icon_exc>Ah...! N-navree d'etre si soudaine, mais en\nfait je m'appelle Shrina et je voudrais\ndevenir actrice.\n<br>\nCependant, je n'arrive pas a trouver un\nprofesseur digne de ce nom dans cette ville.\n<br>\nJe sens quelque chose de special chez vous.\nS'il vous plait, devenez mon professeur et\ndonnez-moi des cours!\n<br>\nJe parle de cours, mais en fait tout ce que\nvous avez a faire, c'est d'utiliser devant moi\nune attitude specifique que je maitrise mal.\n<br>\nTout d'abord, j'aimerais vraiment voir une\ndemonstration de l'attitude \"",
   "せ　先生！": "P... Professeur!",
   "はっ！　す　すいません！　突然に！": "A2",
-  "私　女優を目指してる　シュリナっていいます。\nでも　こんな無骨な町では　演技の勉強するのに\nいい先生がいなくて　困っていたんです。": "A3",
-  "でも　先生から洗練されたセンスを感じました。\nお願いです！　どうか　私の先生になって\n演技のレッスンをしてください。": "A4",
+  "私　女優を目指してる　シュリナっていいます.\nでも　こんな無骨な町では　演技の勉強するのに\nいい先生がいなくて　困っていたんです.": "A3",
+  "でも　先生から洗練されたセンスを感じました.\nお願いです！　どうか　私の先生になって\n演技のレッスンをしてください.": "A4",
   "最初は　しぐさ『": "A6",
   "A7A8": "\"! Vous pouvez soit utiliser l'attitude vous-meme, ou alors demander a l'un des membres de votre equipe.",
   "P... Professeur!A2A3A4A5A6": "Ah...! N-navree d'etre si soudaine, mais en fait je m'appelle Shrina et je voudrais devenir actrice. Cependant, je n'arrive pas a trouver un professeur digne de ce nom dans cette ville. Je sens quelque chose de special chez vous. S'il vous plait, devenez mon professeur et donnez-moi des cours! Je parle de cours, mais en fait tout ce que vous avez a faire, c'est d'utiliser devant moi une attitude specifique que je maitrise mal. Tout d'abord, j'aimerais vraiment voir une demonstration de l'attitude \"",
   "レッスンといっても　私の苦手な　しぐさを\n目の前で　やってくれるだけでいいんです。\nそれだけで　充分　勉強になりますから！": "A5",
   "』の\nお手本が　どうしても見たいんです！": "A7",
-  "しぐさをするのは　先生自身でもいいし\n先生のお仲間の方が　私の目の前で　するのでも\nかまいません。ご指導　よろしくお願いします！": "A8"
+  "しぐさをするのは　先生自身でもいいし\n先生のお仲間の方が　私の目の前で　するのでも\nかまいません.ご指導　よろしくお願いします！": "A8"
 }
