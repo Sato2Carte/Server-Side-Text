@@ -191,7 +191,7 @@ def process_file(path, rules, args, global_stats):
 def main():
     ap = argparse.ArgumentParser(description="Corriger valeurs et renommer des clés JSON (CRLF/LF safe).")
     ap.add_argument("--root", default=".", help="Racine à scanner (dossier).")
-    ap.add_argument("--rules", default="key_rules.json", help="Fichier JSON des règles de clés.")
+    ap.add_argument("--rules", default="key_rules.txt", help="Fichier JSON des règles de clés.")
     ap.add_argument("--apply", action="store_true", help="Écrire les changements (sinon dry-run).")
     ap.add_argument("--backup", action="store_true", help="Créer un .bak avant d’écrire (avec --apply).")
     ap.add_argument("--keep-accents", action="store_true", help="Ne pas déaccentuer les valeurs.")
