@@ -38749,7 +38749,6 @@
   "バグド": "Bagdor",
   "モンスター牧場": "enclos",
   "スカウトの書": "livre de dressage",
-  "「あっ　先生！　来てくださったんですね。\n\n　さっそく　レッスンをお願いします。\n\n<br>\n\n「今日は　しぐさ": "Oh, vous voila professeur!\nVous pouvez debuter la lecon des maintenant!\n<br>\nAujourd'hui, j'aimerais vraiment voir une\ndemonstration de l'attitude",
   "の\n\n　お手本が　どうしても見たいんです！<open_irai><bw_break>": "!<open_irai><bw_break>",
   "グレン城下町にいる　女優志望のシュリナに\n演技の勉強のため　『": "Shrina, une actrice en herbe de Glen t'a demande de lui montrer l'attitude \"",
   "』の\n　お手本が　どうしても見たいんです！\n<br>\n「しぐさをするのは　先生自身でもいいし\n　先生のお仲間の方が　私の目の前で　するのでも\n　かまいません。ご指導　よろしくお願いします！": "\"!\n<br>\nVous pouvez soit utiliser l'attitude\nvous-meme, ou alors demander a l'un des\nmembres de votre equipe.",
@@ -38774,5 +38773,5 @@
   "あっ　先生！　来てくださったんですね。\nさっそく　レッスンをお願いします。": "Oh, vous voila professeur! Vous pouvez debuter la lecon des maintenant!",
   "T": "T",
   "今日は　しぐさ『": "Aujourd'hui, j'aimerais vraiment voir une demonstration de l'attitude \"",
-  "A7": "!"
+  "A7": "\"!"
 }
