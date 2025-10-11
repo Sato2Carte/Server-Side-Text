@@ -3896,5 +3896,6 @@
   "<attr><feel_sad_lv3><end_attr>「うえ～～～～～ん！！\n　ひっく　ひっく……。ぐずっ……。": "<attr><feel_sad_lv3><end_attr>Uen!! Hic, hic. Gugu.",
   "<attr><feel_sad_lv3><end_attr>「うっ　うっ……　ホッとしたら\n　なんだか　なみだ　出てきちゃって……\n　うわ～ん！　うわ～ん！": "<attr><feel_sad_lv3><end_attr>Ugh, ugh... Quand je me suis sentie soulagee,\ndes larmes ont commence a couler... Snif!\nSnif!",
   "<attr><feel_sad_lv1><end_attr>「おお　<pnplacehold>！　ケガはないか？\n　お前さんなら　無事だと　信じていたが\n　顔を見るまで　気が気でなくてのう……。": "<attr><feel_sad_lv1><end_attr>Oh, Yuto! Tu n'es pas blesse? Je savais que tu\nallais bien, mais je ne pouvais pas me\nrassurer avant de voir ton visage.",
-  "<attr><feel_sad_lv2><end_attr>「おおっ　<pnplacehold>どの……！\n　よくぞ無事に　お戻りになられました。\n　皆　あなたのことを　案じておりましたよ。": "<attr><feel_sad_lv2><end_attr>Oh, Yuto...! Nous sommes soulages que vous\nsoyez revenu sain et sauf. Tout le monde\ns'inquietait pour vous."
+  "<attr><feel_sad_lv2><end_attr>「おおっ　<pnplacehold>どの……！\n　よくぞ無事に　お戻りになられました。\n　皆　あなたのことを　案じておりましたよ。": "<attr><feel_sad_lv2><end_attr>Oh, Yuto...! Nous sommes soulages que vous\nsoyez revenu sain et sauf. Tout le monde\ns'inquietait pour vous.",
+  "「来たか　<pnplacehold>。\n　ヒメア様が　そなたをお呼びだ。\n　さあ　中に入りたまえ。": "Tu es la, Yuto. Dame Himea vous demande.\nEntrez donc."
 }
