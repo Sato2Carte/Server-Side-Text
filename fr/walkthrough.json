@@ -1,7 +1,7 @@
 {
   "メインコマンド『せんれき』の\r\nこれまでのおはなしを見ながら\r\n物語を進めていこう。": "Use \"Records\" and check\r\n\"The Story So Far\" to see\r\nwhere to head next.",
   "新たなる冒険にそなえ\r\n町の酒場にいる\r\n紹介人に話しかけよう。": "Adresse-toi a un introducteur\ndans n'importe quelle taverne.",
-  "エテーネの村のアバの家にいる\nアバさまに　謝りにいこう。": "Va t'excuser aupres d'Abba,\ndans sa demeure du village\nde Cadis.",
+  "エテーネの村のアバの家にいる\nアバさまに　謝りにいこう。": "Va t'excuser aupres d’Abba,\ndans sa demeure du village\nde Cadis.",
   "久遠の森にいる　イココと話し\n世界樹の頂へ行こう。": "Talk to Ikoko in Eternal Wood\nand go to the top of Yggdrasil.",
   "久遠の森にいる　イココと話し\n世界樹の頂にいる\n紫獅鬼バイロゼオを倒そう。": "Talk with Ikoko in Eternal Wood\nand defeat Purple Lion Byrozeo\nat the World Tree Top.",
   "ツスクルの村の巫女の館にいる\n巫女ヒメアの話を聞こう。": "Let's listen to Maiden Himea in\nthe Maiden Manor in Tsusukul\nVillage.",
@@ -231,5 +231,7 @@
   "村を出て\n東にある久遠の森の奥の\n世界樹の丘へ行こう。": "Quittez le village et dirigez-\nvous vers la Colline de\nl'Arbre-Monde, situee a [...]",
   "ツスクルの村へ帰ろう。": "Retournons au village Tsuskuru.",
   "ツスクルの村の南の出口から\n西のキリカ草原を抜けて\n風の町アズランを目指そう。": "Quittez la sortie sud du\nvillage de Tsusukul, traversez\nla steppe Kirika a [...]",
-  "オルフェアの町を東側から出て\nオルフェア地方東の\nスライムベスを倒そう。": "Sortez d'Orfea par l'est et\nbattez le gluante de l'Est de\nla region d'Orfea."
+  "オルフェアの町を東側から出て\nオルフェア地方東の\nスライムベスを倒そう。": "Sortez d'Orfea par l'est et\nbattez le gluante de l'Est de\nla region d'Orfea.",
+  "オルフェアの町の\nサーカス団のテントへ行こう。": "Allons au chapiteau du cirque\nOrfea.",
+  "a": "a"
 }
