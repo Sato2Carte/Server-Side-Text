@@ -38780,5 +38780,7 @@
   "若葉の試　": "epreuve du bourgeon",
   "学びの庭": "jardin du savoir",
   "知の試練": "test de connaissance",
-  "A": "A"
+  "では　ドルボードの\n乗り方について　説明しますね。": "Maintenant, laissez-moi vous expliquer comment utiliser un dolboard.",
+  "どうぐの　だいじなものの中にある\nレンタルドルボードを使うか\nLT (Hold)すれば　乗れます。": "Vous pouvez soit selectionner le \"doalboard de location\" depuis la section \"Objets importants\" de votre sac, ou bien maintenir le<color_yellow> bouton LT<color_white> enfonce.",
+  "しかし　そのままでは　速度は出ません。\n速度を出すためには　ドルセリンという\n燃料が　必要となります。": "Cependant, un dolboard permet de se deplacer plus vite uniquement si son plein est fait avec de la dolsoline."
 }
