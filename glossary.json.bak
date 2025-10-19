@@ -38783,5 +38783,12 @@
   "では　ドルボードの\n乗り方について　説明しますね。": "Maintenant, laissez-moi vous expliquer comment utiliser un dolboard.",
   "どうぐの　だいじなものの中にある\nレンタルドルボードを使うか\nLT (Hold)すれば　乗れます。": "Vous pouvez soit selectionner le \"doalboard de location\" depuis la section \"Objets importants\" de votre sac, ou bien maintenir le<color_yellow> bouton LT<color_white> enfonce.",
   "しかし　そのままでは　速度は出ません。\n速度を出すためには　ドルセリンという\n燃料が　必要となります。": "Cependant, un dolboard permet de se deplacer plus vite uniquement si son plein est fait avec de la dolsoline.",
-  "ドルセリンは　道具屋で売っておりますので\nたくさん　持っておくことを　お勧めしますよ。\n": "Il s'agit d'un carburant qui est vendu dans les magasins d'objet. Je vous conseille de toujours en avoir suffisamment sur vous."
+  "ドルセリンは　道具屋で売っておりますので\nたくさん　持っておくことを　お勧めしますよ。\n": "Il s'agit d'un carburant qui est vendu dans les magasins d'objets. Je vous conseille de toujours en avoir suffisamment sur vous.",
+  "どうぐから　ドルセリンを使うと\nドルボードに　燃料が入ります。\nひとつで　３０分の間　速度が上がります。": "A9",
+  "乗った分だけ　燃料が減ります。\n燃料が　なくなったら\nまた　ドルセリンを使ってください。": "A10",
+  "A9A10": "Un plein vous permettra de vous deplacer plus vite pendant 30 minutes.",
+  "ただ　町の中など　乗れない場所もあります。\nそういう場所に　乗ったまま入ろうとすると\n自動的に　降りてしまいます。": "Notez cependant  que les dolboards sont interdits dans certains endroits tels que les villes. Si vous essayez d'y penetrer alors que vous etes sur votre dolboard, vous en descendrez automatiquement.",
+  "乗ったままでも　たいていのことはできますが\n魔物と戦いになったり　ルーラストーンを\n使ったりすると　自動的に　降りてしまいます。": "Sur le dolboard, vous pouvez realiser la majorite des actions courantes. Vous en descendrez cependant automatiquement si vous commencez un combat ou utilisez une telepierre.",
+  "普通に降りるときは\nB buttonを　押してください。": "Pour descendre vous-meme de dolboard, il vous suffit d'appuyer sur le bouton B.",
+  "最後に　お貸しする期間ですが\nあなたが　ご自分のドルボードを\n手に入れるまで　となります。": "Vous pourrez utiliser ce dolboard de location jusqu'a ce que vous aillez le votre."
 }
