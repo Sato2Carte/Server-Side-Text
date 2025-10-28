@@ -38770,7 +38770,6 @@
   "』の\nお手本が　どうしても見たいんです！": "A7",
   "しぐさをするのは　先生自身でもいいし\n先生のお仲間の方が　私の目の前で　するのでも\nかまいません。ご指導　よろしくお願いします！": "A8",
   "あっ　先生！　来てくださったんですね。\nさっそく　レッスンをお願いします。": "Oh, vous voila professeur! Vous pouvez debuter la lecon des maintenant!",
-  "T": "T",
   "今日は　しぐさ『": "Aujourd'hui, j'aimerais vraiment voir une demonstration de l'attitude \"",
   "A7": "\"!",
   "はじめての町に　着きました！\n全滅時の復活場所を　変更しておくと安心です。": "C'est la premiere fois que vous visitez cette ville! Il est donc conseille de changer votre lieu de reapparition.",
@@ -38804,5 +38803,7 @@
   "悪いけど　ボクの代わりに　ポニーナを見つけて\nもう　かくれんぼは終わりだって\n伝えてきてくれないかな？": "Je suis sur qu'elle est quelque part dans le village, alors pourriez-vous la retrouver afin de lui dire que le cache-cache est fini?",
   "こういう　人探しのときには\n地図を使うと　便利だよ。\n地図の使い方を　聞きたいかい？": "Pour savoir ou elle se trouve, il vous suffit d'utiliser votre carte. Voulez-vous que je vous explique comment vous en servir?",
   "どうぐの　だいじなものの中にある\nレンタルドルボードを使うか\n11 button (Hold)すれば　乗れます。": "Vous pouvez soit selectionner le \"doalboard de location\" depuis la section \"Objets importants\" de votre sac, ou bien maintenir la<color_yellow> touche 11<color_white> enfoncee.",
-  "普通に降りるときは\n2 buttonを　押してください。": "Pour descendre vous-meme de dolboard, il vous suffit d'appuyer sur la touche 2."
+  "普通に降りるときは\n2 buttonを　押してください。": "Pour descendre vous-meme de dolboard, il vous suffit d'appuyer sur la touche 2.",
+  "A": "A",
+  "キーエンブレム": "embleme cle"
 }
