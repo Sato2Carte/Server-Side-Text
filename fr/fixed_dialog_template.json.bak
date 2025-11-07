@@ -3962,8 +3962,7 @@
   "クエスト『旅の終わりと記憶の石』を\n受けました。<update_quedate><me 74>": "Vous avez accepte la quete \n\"La pierre d'un voyage passe\".<update_quedate><me 74>",
   "「よろいのきしは　今も\n　オーグリード大陸の　グレン領東の\n　さらに東端の　奥まった地にいる。\n<br>\n「わしの代わりに　倒してきてくれたら\n　ルーラストーンを　ゆずってやるからな。<open_irai><bw_break>": "Les chevaliers errants se trouvent dans la\npartie orientale de l'Est du royaume de Glen\nsur le continent d'Ogride.\n<br>\nSi vous parvenez a en vaincre un,\nje vous donnerai ma telepierre.<open_irai><bw_break>",
   "<close_irai>「相棒は　ウデききの剣士じゃったが\n　あいつの剣ですら　よろいのきしには\n　歯が立たなんだ。……用心して行くのじゃぞ。": "<close_irai>Mon compagnon etait un bretteur talentueux,\nmais meme son epee n'a pas pu venir a bout de\nce monstre, alors faites attention.",
-  "よろいのきしは\nさびついた剣を　落としていった。\n<auto_br=5000>\n\u0004Yutoは\nさびついた剣（だいじなもの）を　手に入れた！<se_nots System 7>\n<auto_bw=5000><close>": "Chevalier errant a laisse tomber l'epee\nrouillee.\n<auto_br=5000>\nYuto recoit l'Epee rouillee (objet important)!<se_nots System 7>\n<auto_bw=5000><close>",
-  "<attr><feel_happy_lv2><end_attr>「どうやら　よろいのきしを\n　倒してきてくれたようじゃな。\n　ほっほっほ。": "<attr><feel_happy_lv2><end_attr>Il semble que vous ayez vaincu Chevalier\nerrant. Ho ho ho.",
+  "<attr><feel_happy_lv2><end_attr>「どうやら　よろいのきしを\n　倒してきてくれたようじゃな。\n　ほっほっほ。": "<attr><feel_happy_lv2><end_attr>On dirait bien que vous avez reussi a\nvaincre un chevalier errant. Hohoho.",
   "<attr><feel_angry_lv2><end_attr><icon_exc>「……むむっ。\n　お前さんの持っている　その　さびついた剣を\n　わしに　見せてくれんかの！？": "<attr><feel_angry_lv2><end_attr><icon_exc>... Hum. Montre-moi donc cette epee rouillee\nque tu as la!",
   "マジリクに\nさびついた剣を　渡しますか？<yesno><case 1><break><case 2><close><case_cancel><close><case_end>": "Donnez-vous l'epee rouillee a Majirik?<yesno><case 1><break><case 2><close><case_cancel><close><case_end>",
   "<attr><feel_sad_lv1><end_attr>「そう言わんと……！\n　その　さびついた剣を　わしに見せてくれ！！": "<attr><feel_sad_lv1><end_attr>Ne dis pas ca...! Montre-moi cette epee\nrouillee!",
@@ -4036,5 +4035,6 @@
   "「ポムポムオイルは　ウェナ諸島にある\n　地底湖の洞くつの　ポムポムボムを倒すと\n　まれに手に入る　サビ取り用のオイルじゃよ。<open_irai><bw_break>": "Huile Pom Pom est une huile antirouille que\nl'on peut obtenir rarement en battant Boumbone\ndans la Grotte du lac souterrain a Nhum'iles.<open_irai><bw_break>",
   "「お前さんには　そのオイルを使って\n　ビッグホルンの　掃除をしてきてほしいんじゃ。\n　やってくれなきゃ　フッフプ　泣いちゃうもん！<bw_break>": "Je veux que tu nettoies Big Horn avec cette\nhuile. Si tu ne le fais pas, Fuffupu va\npleurer!<bw_break>",
   "「掃除が終わって　ビッグホルンが\n　息を吹き返したかどうか　しらべてきてくれたら\n　お前さんに　いいことを教えてやろうかの。": "Une fois le nettoyage termine, si tu viens\nverifier si le Big Horn a repris vie, je te\ndirai quelque chose d'interessant.",
-  "バブルスライムは\nきらめきインクを　落としていった。\n<auto_br=5000>\n\u0004\u0004<pnplacehold>は\nきらめきインク（だいじなもの）を\n手に入れた！<se_nots System 7>\n<auto_bw=5000><close>": "Gluanbulle a laisse tomber de l'encre\nscintillante.\n<auto_br=5000>\n<pnplacehold> recoit de l'encre scintillante\n(objet important)!<se_nots System 7><auto_bw=5000><close>"
+  "バブルスライムは\nきらめきインクを　落としていった。\n<auto_br=5000>\n\u0004\u0004<pnplacehold>は\nきらめきインク（だいじなもの）を\n手に入れた！<se_nots System 7>\n<auto_bw=5000><close>": "Gluanbulle a laisse tomber de l'encre\nscintillante.\n<auto_br=5000>\n<pnplacehold> recoit de l'encre scintillante\n(objet important)!<se_nots System 7><auto_bw=5000><close>",
+  "よろいのきしは\nさびついた剣を　落としていった。\n<auto_br=5000>\n\u0004<pnplacehold>は\nさびついた剣（だいじなもの）を　手に入れた！<se_nots System 7>\n<auto_bw=5000><close>": "Chevalier errant a laisse tomber\nune epee rouillee.\n<auto_br=5000>\n<pnplacehold> recoit une epee rouillee \n(objet important)!<se_nots System 7>\n<auto_bw=5000><close>"
 }
