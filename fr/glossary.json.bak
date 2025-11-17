@@ -35785,7 +35785,7 @@
   "ルグド": "Rugudo",
   "ラッピ": "Rappi",
   "ルベカ": "Rubecca",
-  "うける": "Accept",
+  "うける": "Oui",
   "アカカ": "Akaka",
   "練兵場": "Army Training Grounds",
   "コリコ": "Koriko",
@@ -38806,5 +38806,7 @@
   "普通に降りるときは\n2 buttonを　押してください。": "Pour descendre vous-meme de dolboard, il vous suffit d'appuyer sur la touche 2.",
   "キーエンブレム": "embleme cle",
   "フウラさん": "Fuura",
-  "今受けている　『": "Vous n'avez pas encore termine la quete “"
+  "今受けている　『": "Vous n'avez pas encore termine la quete “",
+  "』を\nクリアしていませんが　キャンセルをして\nこの日替わりクエストを　受けなおしますか？": "“ que vous avez en cours. Souhaitez-vous l'annuler afin de commencer une nouvelle quete?",
+  "やめる": "Non"
 }
