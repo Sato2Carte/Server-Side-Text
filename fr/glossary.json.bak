@@ -25908,7 +25908,7 @@
   "さわばあさん": "Grand-Mere Sawa",
   "鬼哭の魔剣匠": "Fantome de l'Epeiste",
   "取引商アチャ": "Trader Acha",
-  "ラグアス王子": "Prince Laguas",
+  "ラグアス王子": "Prince Raguas",
   "お祝いリボン": "Congrats Ribbon",
   "竜牙石の破片": "Dragonite Shard",
   "魔侯爵のこて": "Marquis Gauntlets",
@@ -30920,7 +30920,7 @@
   "ピルクノ": "Pirukuno",
   "強化の陣": "Reinforcers",
   "愛の魔人": "Djinn of Love",
-  "ラグアス": "Laguas",
+  "ラグアス": "Raguas",
   "ナラジア": "Narasia",
   "マティラ": "Matira",
   "カナテツ": "Kanatetsu",
@@ -38805,5 +38805,6 @@
   "どうぐの　だいじなものの中にある\nレンタルドルボードを使うか\n11 button (Hold)すれば　乗れます。": "Vous pouvez soit selectionner le \"doalboard de location\" depuis la section \"Objets importants\" de votre sac, ou bien maintenir la<color_yellow> touche 11<color_white> enfoncee.",
   "普通に降りるときは\n2 buttonを　押してください。": "Pour descendre vous-meme de dolboard, il vous suffit d'appuyer sur la touche 2.",
   "キーエンブレム": "embleme cle",
-  "フウラさん": "Fuura"
+  "フウラさん": "Fuura",
+  "今受けている　『": "Vous n'avez pas encore termine la quete “"
 }
