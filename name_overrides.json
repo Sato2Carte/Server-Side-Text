@@ -392,7 +392,14 @@
         "コルテン": "Colten",
         "テニシャ": "Tenisha",
         "ノッディ": "Noddy",
-        "ウッドランド": "Woodland"
+        "ウッドランド": "Woodland",
+        "ロムロー": "Romlaw",
+        "ポメロ": "Pomelo",
+        "ルフレ": "Reflet",
+        "フロイド": "Floyd",
+        "アンドロメダ": "Andromeda",
+        "サーゴン": "Sargon",
+        "でゅーぴぷ": "Dewpipu"
     },
     "mytown_names": {
         "取引商チェポン": "Trader Chepon",
@@ -532,6 +539,10 @@
         "神官アーク": "Priest Ark",
         "案内係ガブリソ": "Guide Gabriso",
         "預かり所いちはる": "Storage Ichi-Haru",
-        "住宅素材屋ポピー": "Housing Materials Poppy"
+        "住宅素材屋ポピー": "Housing Materials Poppy",
+        "魔物管理人ショウブ": "Monster Manager Shobu",
+        "郵便局員まみ": "Postman Mami",
+        "住宅商トキムラ": "Realtor Tokimura",
+        "フリーレン": "Frieren"
     }
 }
